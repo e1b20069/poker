@@ -9,4 +9,7 @@ public interface DeckMapper {
 
   @Select("SELECT id from poker4")
   ArrayList<Deck> selectAllByDeckid();
+
+  @Select("SELECT id from poker4 WHERE id = 1")
+  Deck selectFirstByDeckid();
 }

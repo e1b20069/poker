@@ -34,7 +34,7 @@ public class AsyncPokerService {
   }
 
   @Async
-  public void asyncShowFruitsList(SseEmitter emitter) {
+  public void asyncShowSDeckList(SseEmitter emitter) {
     dbUpdated = true;
     try {
       while (true) {

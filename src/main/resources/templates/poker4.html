@@ -11,17 +11,6 @@
         console.log(event.data);
         var fruits_list = JSON.parse(event.data);
         var fruits_table = "";
-        // DBに残っているフルーツのリストがJSONオブジェクトとして得られるので，htmlを作成し，tbodyの中身毎入れ替える
-        for (var i = 0; i < fruits_list.length; i++) {
-          var bgn_tr = "<tr>";
-          var end_tr = "</tr>";
-          var idx = "<td>" + i + "</td>";
-          var f_name = "<td>" + fruits_list[i].name + "</td>";
-          var f_price = "<td>" + fruits_list[i].price + "</td>";
-          var f_proc = "<td>" + "<a href='/sample5/step8?id=" + fruits_list[i].id + "'>購入</a>" + "</td>"
-          fruits_table = fruits_table + bgn_tr + idx + f_name + f_price + f_proc + end_tr;
-
-        }
         console.log(fruits_table);
         var tbody = document.getElementById("fruits_list");
         tbody.innerHTML = fruits_table;

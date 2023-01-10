@@ -9,6 +9,6 @@ public interface PlayerMapper {
   @Insert("INSERT INTO player (Playername) VALUES (#{name});")
   void insertPlayerName(String name);
 
-  @Update("UPDATE player SET hand = #{result}, score = #{score} WHERE ")
-  void updateResult(int result, int score);
+  @Update("UPDATE player SET hand = #{result}, score = #{score} WHERE playername = #{name}")
+  void updateResult(String name, int result, int score);
 }

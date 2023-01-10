@@ -21,7 +21,7 @@ import oit.is.z1661.poker.poker.model.Player;
 @Controller
 public class PokerController {
   Player user1 = new Player();
-  ArrayList<Deck> ids;
+  ArrayList<Deck> ids = new ArrayList<Deck>();
 
   @Autowired
   DeckMapper DeckMapper;
@@ -44,7 +44,9 @@ public class PokerController {
 
   @GetMapping("/poker4")
   public String poker41(ModelMap model) {
-    if (ids.size() < 52) {
+    Deck d = new Deck(1);
+    this.ids.add(d);
+    if (ids.size() == 1) {
       this.ids.remove(0);
       this.ids = DeckMapper.selectAllByDeckid();
       System.out.printf("%d\n", this.ids.size());

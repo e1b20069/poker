@@ -1,6 +1,25 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.springframework.org/schema/security">
 
+<head>
+  <meta charset="utf-8">
+  <script>
+    window.onload = function () {
+      var sse = new EventSource('/push');
+      sse.onmessage = function (event) {
+        console.log("sse.onmessage")
+        console.log(event.data);
+        var fruits_list = JSON.parse(event.data);
+        var fruits_table = "";
+        console.log(fruits_table);
+        var tbody = document.getElementById("fruits_list");
+        tbody.innerHTML = fruits_table;
+
+      }
+    }
+  </script>
+</head>
+
 <body>
   <!-- <p th:if="${Hands}">
     <div th:each="Hand,stat:${Hands}">

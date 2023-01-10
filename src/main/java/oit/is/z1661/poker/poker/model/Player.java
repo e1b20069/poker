@@ -3,6 +3,7 @@ package oit.is.z1661.poker.poker.model;
 import java.util.ArrayList;
 
 public class Player {
+  String playername;
   ArrayList<Integer> hand = new ArrayList<Integer>();
   int score = 0;
 
@@ -274,52 +275,39 @@ public class Player {
     }
   }
 
-  public void Distribute(ArrayList<Deck> deck) {
+  public void Distribute(SDeckMapper deck) {
 
     if (hand.size() < 5) {
       for (int i = 0; i < 5; i++) {
-        int tmp = deck.get(i).getDeckid();
+        int tmp = deck.selectBynumber1();
         this.hand.add(tmp);
-      }
-      for (int j = 0; j < 5; j++) {
-        deck.remove(0);
+        deck.deleteBynumber1(tmp);
       }
     }
 
     sort(this.hand);
   }
 
-  public void Distribute2(ArrayList<Deck> ids) {
-    for (int i = 0; i < 52; i++) {
-      int tmp = ids.get(i).getDeckid();
-      this.hand.add(tmp);
-    }
+  public void Exchange(int index, SDeckMapper deck) {
 
-    sort(this.hand);
-  }
-
-  public void Distribute3(ArrayList<Deck> ids) {
-    for (int i = 0; i < 6; i++) {
-      int tmp = ids.get(i).getDeckid();
-      this.hand.add(tmp);
-    }
-
-    sort(this.hand);
-  }
-
-  public void Exchange(int index, ArrayList<Deck> deck) {
-
-    int tmp = deck.get(0).getDeckid();
+    int tmp = deck.selectBynumber1();
     this.hand.remove(index);
-    System.out.printf("山札：%d\n", deck.size());
     System.out.printf("手札：%d\n", this.hand.size());
     // System.out.printf("%d\n", this.hand.get(index));
-    this.hand.add(tmp);
-    deck.remove(0);
+    this.hand.add(index, tmp);
+    deck.deleteBynumber1(tmp);
 
   }
 
   // public void PrintHand()
+
+  public String getplayername()   {
+    return playername;
+  }
+
+  public void setplayername(String name) {
+    this.playername = name;
+  }
 
   public ArrayList<Integer> getHand() {
     return hand;

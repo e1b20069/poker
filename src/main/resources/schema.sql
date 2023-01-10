@@ -1,11 +1,16 @@
+CREATE TABLE player (
+  id IDENTITY,
+  Playername VARCHER NOT NULL,
+  hand VARCHAR,
+  score INT
+)
 CREATE TABLE poker4 (
     id IDENTITY,
     num INT NOT NULL,
     suit VARCHAR NOT NULL
 );
 
-CREATE TABLE score (
+CREATE TABLE sdeck (
     id IDENTITY,
-    hand VARCHAR NOT NULL,
-    score INT NOT NULL
+    num INT NOT NULL
 );

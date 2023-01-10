@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import oit.is.z1661.poker.poker.model.Deck;
 import oit.is.z1661.poker.poker.model.DeckMapper;
+import oit.is.z1661.poker.poker.model.PlayerMapper;
+import oit.is.z1661.poker.poker.model.SDeckMapper;
 import oit.is.z1661.poker.poker.model.Player;
 
 @Controller
@@ -21,14 +23,15 @@ public class PokerController {
   @Autowired
   DeckMapper DeckMapper;
 
-  @GetMapping("/start")
-  public String lobby() {
-    return "start.html";
-  }
+  @Autowired
+  SDeckMapper SDeckMapper;
+
+  @Autowired
+  PlayerMapper playerMapper;
 
   @PostMapping("/start")
-  public String lobby2(@RequestParam String name, ModelMap model) {
-
+  public String lobby(@RequestParam String name, ModelMap model) {
+    playerMapper.insertPlayerName(name);
     model.addAttribute("name", name);
     return "start.html";
   }
@@ -45,7 +48,11 @@ public class PokerController {
       ids.get(rnd).setDeckid(w);
     }
 
-    user1.Distribute(ids);
+    for (int j = 0; j < ids.size(); ++j) {
+      SDeckMapper.insertsdecknumber(ids.get(j).getDeckid());
+    }
+
+    user1.Distribute(SDeckMapper);
     model.addAttribute("Hand1", user1.getHand().get(0));
     model.addAttribute("Hand2", user1.getHand().get(1));
     model.addAttribute("Hand3", user1.getHand().get(2));
@@ -63,6 +70,7 @@ public class PokerController {
     String handname = user1.HandName(result);
     model.addAttribute("handname", handname);
     score = user1.getScore();
+    playerMapper.updateResult(result, score);
     model.addAttribute("score", score);
     return "poker4.html";
   }
@@ -76,19 +84,19 @@ public class PokerController {
       @RequestParam(value = "h5", required = false) boolean h5) {
 
     if (h1) {
-      user1.Exchange(0, ids);
+      user1.Exchange(0, SDeckMapper);
     }
     if (h2) {
-      user1.Exchange(1, ids);
+      user1.Exchange(1, SDeckMapper);
     }
     if (h3) {
-      user1.Exchange(2, ids);
+      user1.Exchange(2, SDeckMapper);
     }
     if (h4) {
-      user1.Exchange(3, ids);
+      user1.Exchange(3, SDeckMapper);
     }
     if (h5) {
-      user1.Exchange(4, ids);
+      user1.Exchange(4, SDeckMapper);
     }
 
     user1.sort(user1.getHand());

@@ -1,0 +1,36 @@
+<!DOCTYPE>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.springframework.org/schema/security">
+
+<head>
+  <meta charset="utf-8">
+  <script>
+    window.onload = function () {
+      var sse = new EventSource('/push');
+      sse.onmessage = function (event) {
+        console.log("sse.onmessage")
+        console.log(event.data);
+      }
+    }
+  </script>
+</head>
+
+<body>
+  <p th:if="${handname}">
+    "[[${handname}]]"、あなたの点数は[[${score}]]点です
+  </p>
+
+  <div th:if="${handname1}">
+    [[${ID1}]] : [[${name1}]]の役は"[[${handname1}]]"で、[[${score1}]]点です
+  </div>
+  <div th:if="${handname2}">
+    [[${ID2}]] : [[${name2}]]の役は"[[${handname2}]]"で、[[${score2}]]点です
+  </div>
+  <div th:if="${handname3}">
+    [[${ID3}]] : [[${name3}]]の役は"[[${handname3}]]"で、[[${score3}]]点です
+  </div>
+  <div th:if="${handname4}">
+    [[${ID4}]] : [[${name4}]]の役は"[[${handname4}]]"で、[[${score4}]]点です
+  </div>
+
+
+</body>

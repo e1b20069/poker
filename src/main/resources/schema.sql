@@ -1,7 +1,7 @@
 CREATE TABLE player (
   id IDENTITY,
-  Playername VARCHAR NOT NULL,
-  hand VARCHAR,
+  playername VARCHAR NOT NULL,
+  handname VARCHAR,
   score INT
 );
 CREATE TABLE poker4 (

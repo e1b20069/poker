@@ -4,9 +4,35 @@
 <body>
   <h1>Hi [[${name}]]</h1>
 
-  <h3><a href="">2人</a></h3>
-  <h3><a href="">3人</a></h3>
-  <h3><a href="/poker4">4人</a></h3>
+  <h2>ログインしているユーザ</h2>
+  <div th:if="${playerid1}">
+    <div th:if="${playername1}">
+      <h4>ID : [[${playerid1}]] / [[${playername1}]]</h4>
+    </div>
+  </div>
+  <div th:if="${playerid2}">>
+    <div th:if="${playername2}">
+      <h4>ID : [[${playerid2}]] / [[${playername2}]]</h4>
+    </div>
+  </div>
+  <div th:if="${playerid3}">>
+    <div th:if="${playername3}">
+      <h4>ID : [[${playerid3}]] / [[${playername3}]]</h4>
+    </div>
+  </div>
+  <div th:if="${playerid4}">>
+    <div th:if="${playername4}">
+      <h4>ID : [[${playerid4}]] / [[${playername4}]]</h4>
+    </div>
+  </div>
+
+  <p>あなたのIDを"半角で"入力してから、ボタンを押してください。</p>
+  <form action="/poker4" method="post">
+    <label for="id">ID</label>
+    <input type="text" name="id" />
+    <input type="submit" value="スタート" />
+  </form>
+
 </body>
 
 </html>

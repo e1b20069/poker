@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.springframework.org/schema/security">
 
 <head>
@@ -9,24 +9,14 @@
       sse.onmessage = function (event) {
         console.log("sse.onmessage")
         console.log(event.data);
-        var fruits_list = JSON.parse(event.data);
-        var fruits_table = "";
-        console.log(fruits_table);
-        var tbody = document.getElementById("fruits_list");
-        tbody.innerHTML = fruits_table;
-
       }
     }
   </script>
 </head>
 
 <body>
-  <!-- <p th:if="${Hands}">
-    <div th:each="Hand,stat:${Hands}">
-      [[${Hand}]]
-    </div>
-  </p> -->
-
+  <p>あなたのIDは[[${id}]]です。</p>
+  <p>交換したいカードのチェックをして、あなたのIDを"半角で"入力してからボタンを押してください。</p>
   <p th:if="${Hand1}">
   <div>
     <img width="10%" th:src="@{image/{Hand1}.png (Hand1=${Hand1})}">
@@ -34,7 +24,6 @@
     <img width="10%" th:src="@{image/{Hand3}.png (Hand3=${Hand3})}">
     <img width="10%" th:src="@{image/{Hand4}.png (Hand4=${Hand4})}">
     <img width="10%" th:src="@{image/{Hand5}.png (Hand5=${Hand5})}">
-
   </div>
   <div>
     <form action="/exchange" method="post">
@@ -43,19 +32,16 @@
       <input type="checkbox" name="h3" />
       <input type="checkbox" name="h4" />
       <input type="checkbox" name="h5" />
+      <input type="text" name="id" />
       <input type="submit" value="交換" />
     </form>
   </div>
   </p>
-  <form action="/poker4" method="post">
+  <p>あなたのIDを"半角で"入力してから、ボタンを押してください。</p>
+  <form action="/result" method="post">
+    <input type="text" name="id" />
     <input type="submit" value="確定" />
   </form>
-  <p th:if="${handname}">
-    [[${handname}]]
-  </p>
-  <p th:if="${score}">
-    [[${score}]]
-  </p>
 </body>
 
 </html>

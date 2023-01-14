@@ -3,9 +3,11 @@ package oit.is.z1661.poker.poker.model;
 import java.util.ArrayList;
 
 public class Player {
+  int id;
   String playername;
-  ArrayList<Integer> hand = new ArrayList<Integer>();
+  String handname;
   int score = 0;
+  ArrayList<Integer> hand = new ArrayList<Integer>();
 
   // エラー
   static final int ERROR = 0;
@@ -283,25 +285,28 @@ public class Player {
         this.hand.add(tmp);
         deck.deleteBynumber1(tmp);
       }
+      sort(this.hand);
     }
-
-    sort(this.hand);
   }
 
   public void Exchange(int index, SDeckMapper deck) {
 
     int tmp = deck.selectBynumber1();
     this.hand.remove(index);
-    System.out.printf("手札：%d\n", this.hand.size());
-    // System.out.printf("%d\n", this.hand.get(index));
     this.hand.add(index, tmp);
     deck.deleteBynumber1(tmp);
 
   }
 
-  // public void PrintHand()
+  public int getId() {
+    return id;
+  }
 
-  public String getplayername()   {
+  public void setId(int id) {
+    this.id = id;
+  }
+
+  public String getplayername() {
     return playername;
   }
 
@@ -309,12 +314,12 @@ public class Player {
     this.playername = name;
   }
 
-  public ArrayList<Integer> getHand() {
-    return hand;
+  public String getHandname() {
+    return handname;
   }
 
-  public void setHand(ArrayList<Integer> hand) {
-    this.hand = hand;
+  public void setHandname(String handname) {
+    this.handname = handname;
   }
 
   public int getScore() {
@@ -323,5 +328,13 @@ public class Player {
 
   public void setScore(int score) {
     this.score = score;
+  }
+
+  public ArrayList<Integer> getHand() {
+    return hand;
+  }
+
+  public void setHand(ArrayList<Integer> hand) {
+    this.hand = hand;
   }
 }

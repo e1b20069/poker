@@ -18,6 +18,6 @@ public interface SDeckMapper {
   @Delete("DELETE FROM sdeck WHERE num =#{number}")
   boolean deleteBynumber1(int number);
 
-  @Select("SELECT number from sdeck")
+  @Select("SELECT num from sdeck")
   ArrayList<SDeck> selectAllSDecks();
 }
